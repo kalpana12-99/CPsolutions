@@ -1,0 +1,34 @@
+# 2554. Maximum Number of Integers to Choose From a Range I
+
+## [link](https://leetcode.com/problems/maximum-number-of-integers-to-choose-from-a-range-i/description/?envType=daily-question&envId=2024-12-06)
+
+## Code
+
+```cpp
+class Solution {
+public:
+    int maxCount(vector<int>& ban, int n, int maxSum) {
+        sort(ban.begin() , ban.end());
+
+        int cnt = 0;
+        int i = 0; 
+        int sum = 0;
+
+        for(int j = 1; j <= n; j++){
+            if(i < ban.size() && j == ban[i]){
+                while(i < ban.size() && ban[i] == j){
+                    i++;
+                }                
+            }else{
+                sum += j;
+                if(sum <= maxSum){
+                    cnt++;
+                }else{
+                    break;
+                }
+            }
+        }
+        return cnt;
+    }
+};
+```
